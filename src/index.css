@@ -1,68 +1,102 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* 1. Design System Variables */
+@theme {
+  --color-primary: #4f46e5;
+  --color-secondary: #9333ea;
+  
+  /* High-Contrast Light Mode */
+  --color-page-bg: #f8fafc;
+  --color-text-main: #0f172a; 
+  --color-card-border: rgba(0, 0, 0, 0.08);
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+.dark {
+  --color-page-bg: #030712;
+  --color-text-main: #f1f5f9;
+  --color-card-border: rgba(255, 255, 255, 0.1);
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+@layer base {
+  body {
+    background-color: var(--color-page-bg);
+    color: var(--color-text-main);
+    /* Transition speed matches ripple (800ms) */
+    transition: background-color 0.8s cubic-bezier(0.4, 0, 0.2, 1), color 0.4s ease;
+    @apply antialiased min-h-screen overflow-x-hidden;
   }
-  a:hover {
-    color: #747bff;
+}
+
+@layer components {
+  .section-padding { @apply py-24 md:py-32; }
+
+  .section-title {
+    @apply text-4xl md:text-5xl font-extrabold mb-12 text-center 
+           bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 
+           bg-clip-text text-transparent tracking-tighter;
   }
-  button {
-    background-color: #f9f9f9;
+
+  /* Deepened text for Light Mode visibility */
+  .about-text {
+    @apply text-lg md:text-xl text-slate-700 dark:text-slate-400 leading-relaxed transition-colors duration-500;
   }
+
+  /* More opaque white background for light mode cards */
+  .glass-card {
+    @apply bg-white/95 dark:bg-slate-900/40 backdrop-blur-xl 
+           rounded-3xl border border-[var(--color-card-border)]
+           shadow-[0_4px_20px_0_rgba(0,0,0,0.03)] dark:shadow-none
+           transition-all duration-500 hover:-translate-y-1;
+  }
+
+  .btn-primary {
+    @apply flex items-center justify-center gap-3 px-8 py-4 
+           bg-gradient-to-r from-indigo-600 to-purple-600 
+           text-white rounded-2xl font-bold shadow-lg transition-all active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply flex items-center justify-center gap-3 px-8 py-4 
+           bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-200 
+           rounded-2xl font-bold border border-slate-200 dark:border-slate-700
+           transition-all active:scale-95;
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 text-sm font-bold text-slate-700 dark:text-slate-400 
+           hover:text-indigo-600 dark:hover:text-white transition-all duration-300;
+  }
+
+  .badge {
+    @apply px-3 py-1 bg-indigo-100/50 dark:bg-indigo-900/30 
+           text-indigo-800 dark:text-indigo-300 
+           rounded-lg text-[10px] font-bold uppercase tracking-widest
+           border border-indigo-200/50 dark:border-indigo-800/50;
+  }
+
+  .skill-tile {
+    @apply flex flex-col items-center justify-center p-4 
+           bg-slate-200/30 dark:bg-slate-800/30 
+           rounded-2xl border border-transparent transition-all duration-300;
+  }
+
+  .theme-toggle-btn {
+    @apply fixed bottom-8 right-8 z-[110]
+           flex items-center justify-center p-4 rounded-2xl
+           bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800
+           shadow-2xl transition-all duration-300;
+  }
+}
+
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s infinite;
 }
