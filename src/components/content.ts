@@ -127,7 +127,7 @@ export const content = {
         description: "This study evaluates five machine learning algorithms, including Support Vector Machine, VGG16, Gaussian Mixture Model, Gaussian Mixture Model with Stacking (using Random Forest and Logistic Regression), and Random Forest for fibroid detection.",
         venue: "Lecture Notes in Networks and Systems ((LNNS,volume 1162)), Springer (ICT4SD 2024)",
         link: "https://link.springer.com/chapter/10.1007/978-981-97-8605-3_13",
-        tags: ["Machine Learning", "Python", "Random Forest", "SVM", "VGG16", "GMM", "GMM-Stacking", "VGG16"],
+        tags: ["Machine Learning", "Python", "Random Forest", "SVM", "VGG16", "GMM", "GMM-Stacking"],
       },
     ],
   },
