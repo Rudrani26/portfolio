@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMenu, FiX } from 'react-icons/fi';
+import { content } from './content';
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const { navbar } = content;
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20);
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
-
-    const navItems = ['About', 'Skills', 'Projects', 'Experience', 'Contact'];
 
     return (
         <motion.nav
@@ -26,12 +26,12 @@ const Navbar: React.FC = () => {
             <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
                 <motion.a href="#hero" className="text-xl font-black tracking-tighter group" whileHover={{ scale: 1.05 }}>
                     <span className="bg-linear-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent transition-all duration-500">
-                        JA.DEV
+                        {navbar.logo}
                     </span>
                 </motion.a>
 
                 <div className="hidden md:flex items-center space-x-2">
-                    {navItems.map((item) => (
+                    {navbar.items.map((item) => (
                         <a key={item} href={`#${item.toLowerCase()}`} className="nav-link">
                             {item}
                         </a>
@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
                         exit={{ opacity: 0, height: 0 }}
                         className="fixed inset-0 top-0 z-40 md:hidden bg-white dark:bg-slate-950 flex flex-col items-center justify-center p-8 space-y-8"
                     >
-                        {navItems.map((item, i) => (
+                        {navbar.items.map((item, i) => (
                             <motion.a
                                 key={item}
                                 href={`#${item.toLowerCase()}`}

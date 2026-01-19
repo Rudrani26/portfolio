@@ -1,29 +1,8 @@
 import { motion } from 'framer-motion';
+import { content } from './content';
 
 const Experience: React.FC = () => {
-    const experiences = [
-        {
-            company: 'Tech Innovations Inc.',
-            role: 'Senior Software Engineer',
-            period: '2022 - Present',
-            description: 'Leading development of microservices architecture and mentoring junior developers. Reduced deployment time by 60% through CI/CD improvements.',
-            highlights: ['Microservices', 'Team Leadership', 'DevOps'],
-        },
-        {
-            company: 'Digital Solutions Corp.',
-            role: 'Full Stack Developer',
-            period: '2020 - 2022',
-            description: 'Built and maintained customer-facing web applications serving 100K+ users. Implemented real-time features and optimized performance.',
-            highlights: ['React', 'Node.js', 'Performance Optimization'],
-        },
-        {
-            company: 'StartupX',
-            role: 'Software Engineer',
-            period: '2019 - 2020',
-            description: 'Developed MVP for SaaS platform from ground up. Collaborated with product team to define technical requirements and architecture.',
-            highlights: ['MVP Development', 'Full Stack', 'Agile'],
-        },
-    ];
+    const { experience } = content;
 
     return (
         <section id="experience" className="section-padding px-4 bg-slate-50/50 dark:bg-slate-950/20 transition-colors duration-500">
@@ -34,12 +13,12 @@ const Experience: React.FC = () => {
                     viewport={{ once: true }}
                     className="section-title"
                 >
-                    Professional Journey
+                    {experience.title}
                 </motion.h2>
 
-                {/* Timeline Line with Theme-Aware Colors */}
+                {/* Timeline Line */}
                 <div className="space-y-6 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-linear-to-b before:from-transparent before:via-slate-300 dark:before:via-slate-700 before:to-transparent transition-colors duration-500">
-                    {experiences.map((exp, idx) => (
+                    {experience.items.map((exp, idx) => (
                         <motion.div
                             key={exp.company}
                             initial={{ opacity: 0, y: 20 }}

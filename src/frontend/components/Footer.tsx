@@ -1,8 +1,16 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { content } from "./content";
 
 const Footer: React.FC = () => {
+    const { footer } = content;
     const year = new Date().getFullYear();
+
+    const iconMap: Record<string, React.ReactNode> = {
+        'Github': <FiGithub />,
+        'Linkedin': <FiLinkedin />,
+        'Mail': <FiMail />,
+    };
 
     return (
         <footer className="footer-container transition-colors duration-500">
@@ -10,19 +18,15 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                     <div className="text-center md:text-left">
                         <p className="text-slate-800 dark:text-slate-200 font-bold text-lg mb-1">
-                            John Anderson
+                            {footer.name}
                         </p>
                         <p className="text-sm text-slate-500 dark:text-slate-400 transition-colors duration-500">
-                            © {year} All rights reserved.
+                            © {year} {footer.rights}
                         </p>
                     </div>
 
                     <div className="flex gap-4">
-                        {[
-                            { icon: <FiGithub />, href: "https://github.com", label: "GitHub" },
-                            { icon: <FiLinkedin />, href: "https://linkedin.com", label: "LinkedIn" },
-                            { icon: <FiMail />, href: "mailto:john.anderson@email.com", label: "Email" }
-                        ].map((social, i) => (
+                        {footer.social.map((social, i) => (
                             <motion.a
                                 key={i}
                                 href={social.href}
@@ -33,7 +37,7 @@ const Footer: React.FC = () => {
                                 whileTap={{ scale: 0.9 }}
                                 className="footer-icon-link"
                             >
-                                {social.icon}
+                                {iconMap[social.icon]}
                             </motion.a>
                         ))}
                     </div>
@@ -41,7 +45,7 @@ const Footer: React.FC = () => {
 
                 <div className="mt-8 pt-8 border-t border-slate-200/50 dark:border-slate-800/50 text-center">
                     <p className="text-[10px] uppercase tracking-[0.2em] text-slate-400 dark:text-slate-600 font-medium">
-                        Crafted with React • TypeScript • Tailwind • Framer Motion
+                        {footer.techStack}
                     </p>
                 </div>
             </div>
