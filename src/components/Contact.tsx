@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiSend, FiCheckCircle, FiAlertCircle, FiPhone, FiTag } from 'react-icons/fi';
 import { content } from './content';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
     const { contact } = content;
@@ -24,21 +25,18 @@ const Contact: React.FC = () => {
         setStatus('sending');
 
         try {
-            const response = await fetch(contact.apiEndpoint, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (!response.ok) throw new Error('Failed to send message');
+            await emailjs.send(
+                'service_q66axbl',   // replace with your EmailJS Service ID
+                'template_5em4yaf',  // replace with your EmailJS Template ID
+                formData,
+                'Lw6RgWl0Zf8oAwlT5'    // replace with your EmailJS Public Key
+            );
 
             setStatus('success');
             setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
             setTimeout(() => setStatus('idle'), 5000);
         } catch (error) {
-            console.error('Error:', error);
+            console.error(error);
             setStatus('error');
             setTimeout(() => setStatus('idle'), 5000);
         }
@@ -62,7 +60,6 @@ const Contact: React.FC = () => {
                 <div className="glass-card p-8 md:p-12">
                     <form onSubmit={handleSubmit} className="space-y-6">
                         <div className="grid md:grid-cols-2 gap-6">
-                            {/* Name */}
                             <div>
                                 <label htmlFor="name" className={labelClasses}>{contact.form.nameLabel}</label>
                                 <input
@@ -77,7 +74,6 @@ const Contact: React.FC = () => {
                                 />
                             </div>
 
-                            {/* Email */}
                             <div>
                                 <label htmlFor="email" className={labelClasses}>{contact.form.emailLabel}</label>
                                 <input
@@ -94,7 +90,6 @@ const Contact: React.FC = () => {
                         </div>
 
                         <div className="grid md:grid-cols-2 gap-6">
-                            {/* Phone */}
                             <div>
                                 <label htmlFor="phone" className={labelClasses}>{contact.form.phoneLabel}</label>
                                 <div className="relative">
@@ -111,7 +106,6 @@ const Contact: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Subject */}
                             <div>
                                 <label htmlFor="subject" className={labelClasses}>{contact.form.subjectLabel}</label>
                                 <div className="relative">
@@ -130,7 +124,6 @@ const Contact: React.FC = () => {
                             </div>
                         </div>
 
-                        {/* Message */}
                         <div>
                             <label htmlFor="message" className={labelClasses}>{contact.form.messageLabel}</label>
                             <textarea

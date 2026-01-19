@@ -1,13 +1,13 @@
 import React from 'react';
-import Navbar from './frontend/components/Navbar';
-import Hero from './frontend/components/Hero';
-import About from './frontend/components/About';
-import Skills from './frontend/components/Skills';
-import Projects from './frontend/components/Projects';
-import Experience from './frontend/components/Experience';
-import Contact from './frontend/components/Contact';
-import Footer from './frontend/components/Footer';
-import Research from './frontend/components/Research';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import About from './components/About';
+import Skills from './components/Skills';
+import Projects from './components/Projects';
+import Experience from './components/Experience';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import Research from './components/Research';
 
 const App: React.FC = () => {
   return (
