@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <rect width="100" height="100" rx="22" fill="#0D0F0E" />
+  <text
+    x="43"
+    y="53"
+    text-anchor="middle"
+    dominant-baseline="central"
+    font-family="'JetBrains Mono', 'Consolas', 'SFMono-Regular', monospace"
+    font-weight="700"
+    font-size="42"
+    letter-spacing="-2"
+    fill="#C7FF5E"
+  >RC</text>
+  <rect x="74" y="30" width="7" height="28" rx="2" fill="#B8A7FF" />
+</svg>
