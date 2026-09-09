@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rudrani26.github.io/portfolio/sitemap.xml

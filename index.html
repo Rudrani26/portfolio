@@ -2,13 +2,69 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/portfolio/RC_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rudrani Chavarkar</title>
-    <script type="module" crossorigin src="/portfolio/assets/index-ofCxRoZJ.js"></script>
-    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-0ZNbX_M2.css">
+
+    <title>Rudrani Chavarkar | AI &amp; Software Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Rudrani Chavarkar, a USC computer science graduate student building reliable AI systems, backend infrastructure, and developer tools."
+    />
+    <meta name="author" content="Rudrani Chavarkar" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0D0F0E" />
+
+    <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/portfolio/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/portfolio/favicon-16x16.png" />
+    <link rel="icon" href="/portfolio/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/portfolio/apple-touch-icon.png" />
+    <link rel="manifest" href="/portfolio/site.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Rudrani Chavarkar" />
+    <meta property="og:title" content="Rudrani Chavarkar | AI &amp; Software Engineer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Rudrani Chavarkar, a USC computer science graduate student building reliable AI systems, backend infrastructure, and developer tools."
+    />
+    <meta property="og:image" content="https://rudrani26.github.io/portfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rudrani Chavarkar — AI &amp; Software Engineer" />
+    <meta property="og:url" content="https://rudrani26.github.io/portfolio/" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rudrani Chavarkar | AI &amp; Software Engineer" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Rudrani Chavarkar, a USC computer science graduate student building reliable AI systems, backend infrastructure, and developer tools."
+    />
+    <meta name="twitter:image" content="https://rudrani26.github.io/portfolio/og-image.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <script>
+      // Applied before paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var stored = localStorage.getItem('rc-portfolio-theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+        } catch (e) {}
+      })();
+    </script>
+    <script type="module" crossorigin src="/portfolio/assets/index-DgY21SW6.js"></script>
+    <link rel="stylesheet" crossorigin href="/portfolio/assets/index-BGXymPx7.css">
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"></div>
   </body>
 </html>
