@@ -33,11 +33,21 @@ export function Navbar({ theme, onToggleTheme, onOpenCommandPalette }: NavbarPro
             e.preventDefault();
             handleNavClick('hero');
           }}
-          className="flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold"
-          style={{ fontFamily: 'var(--font-heading)', backgroundColor: 'var(--color-accent-lime)', color: '#0d0f0e' }}
+          className="flex items-center gap-2.5"
           aria-label={`${profile.name} — back to top`}
         >
-          {profile.initials}
+          <span
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-bold"
+            style={{ fontFamily: 'var(--font-heading)', backgroundColor: 'var(--color-accent-lime)', color: '#0d0f0e' }}
+          >
+            {profile.initials}
+          </span>
+          <span
+            className="hidden text-sm font-semibold sm:inline"
+            style={{ fontFamily: 'var(--font-heading)', color: 'var(--color-text)' }}
+          >
+            {profile.name}
+          </span>
         </a>
 
         <ul className="hidden items-center gap-1 md:flex">
