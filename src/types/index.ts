@@ -1,4 +1,8 @@
 // Shared content types for the portfolio. Keep this in sync with `src/data/portfolio.ts`.
+//
+// Every field here is meant to be fillable only with facts from the résumé
+// or existing portfolio content — there is no "placeholder" project or
+// experience concept in this data model on purpose.
 
 export type SkillCategoryId =
   | 'languages'
@@ -19,37 +23,22 @@ export interface SkillCategory {
   skills: Skill[];
 }
 
-export type ProjectCategory = 'ai' | 'backend' | 'security' | 'fullstack';
-
-export interface ArchitectureStep {
-  id: string;
-  label: string;
-  description: string;
-}
-
 export interface Project {
   id: string;
   name: string;
-  /** Outcome-focused one-line description. */
-  summary: string;
-  /** Longer explanation of what the project does and why it exists. */
+  /** Factual description, drawn directly from résumé bullets. */
   description: string;
-  role: string;
-  techIds: string[];
-  category: ProjectCategory;
-  technicalChallenge: string;
-  engineeringDecision: string;
-  measurableResult: string;
+  /** Literal stats/results quoted from the résumé (e.g. "92% translation accuracy"). */
+  highlights?: string[];
+  /** All technologies used, as displayed tags — may exceed the toolbox skill list. */
+  techTags: string[];
+  /** Subset of techTags that also exist in skillCategories, for the toolbox highlight feature. */
+  toolboxTechIds: string[];
   githubUrl: string | null;
   liveUrl: string | null;
-  featured: boolean;
-  /** True for editable template cards that are not a real, shipped project. */
-  isPlaceholder: boolean;
-  /** Only used by the featured SentinelMCP card's architecture diagram. */
-  architecture?: ArchitectureStep[];
 }
 
-export type TimelineEntryType = 'work' | 'education' | 'research' | 'leadership';
+export type TimelineEntryType = 'work' | 'education' | 'research';
 
 export interface TimelineEntry {
   id: string;
@@ -63,7 +52,10 @@ export interface TimelineEntry {
   bullets: string[];
   techIds: string[];
   link?: { label: string; href: string };
-  isPlaceholder?: boolean;
+  /** Path to an official logo image under public/. Falls back to `monogram` if absent. */
+  logoSrc?: string;
+  /** Short monogram (2-3 chars) shown in a badge when no official logo is available. */
+  monogram?: string;
 }
 
 export interface CurrentlyPanel {
@@ -88,7 +80,7 @@ export interface CommandAction {
 }
 
 export interface SocialLink {
-  id: 'github' | 'linkedin' | 'email' | 'resume';
+  id: 'github' | 'linkedin' | 'email';
   label: string;
   href: string;
 }
@@ -99,7 +91,6 @@ export interface Profile {
   role: string;
   location: string;
   email: string;
-  resumeHref: string;
   social: SocialLink[];
   availabilityBadge: string;
 }

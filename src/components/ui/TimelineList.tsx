@@ -1,24 +1,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Briefcase, ChevronDown, ExternalLink, FlaskConical, GraduationCap, Users } from 'lucide-react';
-import { timeline } from '../../data/portfolio';
+import { ChevronDown, ExternalLink, FlaskConical, GraduationCap } from 'lucide-react';
+import type { TimelineEntry } from '../../types';
 import { getSkillName } from '../../lib/skills';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
-import { Container } from '../ui/Container';
-import { SectionHeading } from '../ui/SectionHeading';
-import type { TimelineEntry, TimelineEntryType } from '../../types';
-
-const TYPE_ICON: Record<TimelineEntryType, typeof Briefcase> = {
-  work: Briefcase,
-  education: GraduationCap,
-  research: FlaskConical,
-  leadership: Users,
-};
+import { CompanyLogo } from './CompanyLogo';
 
 function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number }) {
   const [expanded, setExpanded] = useState(false);
   const reduced = useReducedMotion();
-  const Icon = TYPE_ICON[entry.type];
 
   return (
     <motion.li
@@ -28,12 +18,21 @@ function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number })
       transition={{ duration: 0.45, delay: Math.min(index * 0.05, 0.3), ease: [0.16, 1, 0.3, 1] }}
       className="relative pl-12"
     >
-      <span
-        className="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border"
-        style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}
-        aria-hidden="true"
-      >
-        <Icon size={15} className="text-(--color-accent-lime)" />
+      <span className="absolute left-0 top-0" aria-hidden="true">
+        {entry.type === 'work' ? (
+          <CompanyLogo logoSrc={entry.logoSrc} monogram={entry.monogram} organization={entry.organization} />
+        ) : (
+          <span
+            className="flex h-9 w-9 items-center justify-center rounded-full border"
+            style={{ borderColor: 'var(--color-border)', backgroundColor: 'var(--color-surface)' }}
+          >
+            {entry.type === 'education' ? (
+              <GraduationCap size={15} className="text-(--color-accent-lime)" />
+            ) : (
+              <FlaskConical size={15} className="text-(--color-accent-lime)" />
+            )}
+          </span>
+        )}
       </span>
 
       <div className="rc-card p-5">
@@ -101,27 +100,17 @@ function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number })
   );
 }
 
-export function Experience() {
+export function TimelineList({ entries }: { entries: TimelineEntry[] }) {
   return (
-    <section id="experience" data-debug-outline data-debug-label="Experience" className="rc-section">
-      <Container>
-        <SectionHeading
-          eyebrow="Timeline"
-          title="Where I’ve Been Building"
-          description="Internships, education, and research — expand any entry for the details."
-        />
-
-        <ol className="relative mt-12 space-y-6">
-          <span
-            className="absolute left-[18px] top-2 bottom-2 w-px"
-            style={{ backgroundColor: 'var(--color-border)' }}
-            aria-hidden="true"
-          />
-          {timeline.map((entry, index) => (
-            <TimelineItem key={entry.id} entry={entry} index={index} />
-          ))}
-        </ol>
-      </Container>
-    </section>
+    <ol className="relative mt-12 space-y-6">
+      <span
+        className="absolute left-[18px] top-2 bottom-2 w-px"
+        style={{ backgroundColor: 'var(--color-border)' }}
+        aria-hidden="true"
+      />
+      {entries.map((entry, index) => (
+        <TimelineItem key={entry.id} entry={entry} index={index} />
+      ))}
+    </ol>
   );
 }

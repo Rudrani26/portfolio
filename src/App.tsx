@@ -4,7 +4,8 @@ import { Navbar } from './components/layout/Navbar';
 import { CommandPalette } from './components/layout/CommandPalette';
 import { Hero } from './components/sections/Hero';
 import { Projects } from './components/sections/Projects';
-import { Experience } from './components/sections/Experience';
+import { InternshipExperience } from './components/sections/InternshipExperience';
+import { Education } from './components/sections/Education';
 import { Toolbox } from './components/sections/Toolbox';
 import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
@@ -39,7 +40,8 @@ function App() {
       <main id="main-content" className="relative z-10">
         <Hero />
         <Projects />
-        <Experience />
+        <InternshipExperience />
+        <Education />
         <Toolbox />
         <About />
         <Contact />

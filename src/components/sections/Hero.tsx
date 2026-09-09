@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowDown, Download, Sparkles } from 'lucide-react';
+import { ArrowDown, Sparkles } from 'lucide-react';
 import { heroContent, profile } from '../../data/portfolio';
 import { scrollToSection } from '../../lib/scroll';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -43,10 +43,6 @@ export function Hero() {
             >
               {heroContent.ctaPrimary}
               <ArrowDown size={16} aria-hidden="true" />
-            </MagneticButton>
-            <MagneticButton as="a" href={profile.resumeHref} target="_blank" rel="noopener noreferrer" className="rc-btn-secondary">
-              <Download size={16} aria-hidden="true" />
-              {heroContent.ctaSecondary}
             </MagneticButton>
           </div>
 

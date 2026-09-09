@@ -9,7 +9,7 @@ export function Toolbox() {
 
   const relatedProjects = useMemo(() => {
     if (!selectedSkillId) return [];
-    return projects.filter((project) => project.techIds.includes(selectedSkillId) && !project.isPlaceholder);
+    return projects.filter((project) => project.toolboxTechIds.includes(selectedSkillId));
   }, [selectedSkillId]);
 
   const toggleSkill = (id: string) => setSelectedSkillId((prev) => (prev === id ? null : id));

@@ -80,9 +80,6 @@ export function Navbar({ theme, onToggleTheme, onOpenCommandPalette }: NavbarPro
             <Command size={14} aria-hidden="true" />
             <kbd className="rc-kbd">Ctrl K</kbd>
           </button>
-          <a href={profile.resumeHref} target="_blank" rel="noopener noreferrer" className="rc-btn-secondary !px-4 !py-2 text-sm">
-            Résumé
-          </a>
           <ThemeToggle theme={theme} onToggle={onToggleTheme} />
         </div>
 
@@ -126,16 +123,6 @@ export function Navbar({ theme, onToggleTheme, onOpenCommandPalette }: NavbarPro
                   </a>
                 </li>
               ))}
-              <li>
-                <a
-                  href={profile.resumeHref}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rc-btn-secondary mt-2 w-full !py-3 text-sm"
-                >
-                  Résumé
-                </a>
-              </li>
               <li>
                 <button
                   type="button"
