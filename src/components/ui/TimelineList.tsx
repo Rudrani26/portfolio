@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ExternalLink, FlaskConical } from 'lucide-react';
+import { Award, ExternalLink, FlaskConical } from 'lucide-react';
 import type { TimelineEntry } from '../../types';
 import { getSkillName } from '../../lib/skills';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -59,6 +59,21 @@ export function TimelineItem({ entry, index }: { entry: TimelineEntry; index: nu
                   {getSkillName(id)}
                 </span>
               ))}
+            </div>
+          )}
+
+          {entry.honors && entry.honors.length > 0 && (
+            <div className="mt-4">
+              <p className="rc-eyebrow flex items-center gap-1.5">
+                <Award size={12} aria-hidden="true" /> Honors
+              </p>
+              <div className="mt-2 flex flex-wrap gap-1.5">
+                {entry.honors.map((honor) => (
+                  <span key={honor} className="rc-tag" style={{ color: 'var(--color-text)' }}>
+                    {honor}
+                  </span>
+                ))}
+              </div>
             </div>
           )}
 

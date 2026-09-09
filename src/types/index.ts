@@ -54,6 +54,10 @@ export interface TimelineEntry {
   logoSrc?: string;
   /** Short monogram (2-3 chars) shown in a badge when no official logo is available. */
   monogram?: string;
+  /** A secondary position held alongside this one (e.g. USC Grader alongside the MSCS). */
+  subRole?: { role: string; dateRange: string; location: string };
+  /** Honors/awards associated with this entry (e.g. university honors). */
+  honors?: string[];
 }
 
 export interface CurrentlyPanel {

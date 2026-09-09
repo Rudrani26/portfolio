@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Briefcase } from 'lucide-react';
 import type { TimelineEntry } from '../../types';
 import { getSkillName } from '../../lib/skills';
 import { formatGraduationCountdown } from '../../lib/graduation';
@@ -156,6 +157,18 @@ export function UscEducationCard({ entry, index }: { entry: TimelineEntry; index
                   {getSkillName(id)}
                 </span>
               ))}
+            </div>
+          )}
+
+          {entry.subRole && (
+            <div className="mt-4 border-t border-(--color-border) pt-4">
+              <p className="rc-eyebrow flex items-center gap-1.5">
+                <Briefcase size={12} aria-hidden="true" /> Also at USC
+              </p>
+              <p className="mt-1 text-sm text-(--color-text)">
+                {entry.subRole.role} <span className="text-(--color-text-muted)">· {entry.subRole.dateRange}</span>
+              </p>
+              <p className="text-sm text-(--color-text-muted)">{entry.subRole.location}</p>
             </div>
           )}
         </div>

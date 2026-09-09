@@ -206,7 +206,7 @@ export const internships: TimelineEntry[] = [
   {
     id: 'clearing-corp',
     type: 'work',
-    organization: 'The Clearing Corporation of India',
+    organization: 'The Clearing Corporation of India Limited',
     role: 'Software Engineering Intern',
     dateRange: 'Jun 2024 – Nov 2024',
     sortKey: '2024-06',
@@ -256,9 +256,10 @@ export const education: TimelineEntry[] = [
     monogram: 'USC',
     bullets: [
       'GPA: 3.75 / 4.0.',
-      'Relevant coursework: Analysis of Algorithms, Database Systems, Agentic AI, Applied Natural Language Processing.',
+      'Relevant coursework: Analysis of Algorithms, Database Systems, Machine Learning for Data Science, Applied Natural Language Processing, Agentic AI, Information Retrieval.',
     ],
     techIds: ['agentic-ai', 'nlp', 'sql'],
+    subRole: { role: 'Grader', dateRange: 'Feb 2026 – May 2026', location: 'Los Angeles, California' },
   },
   {
     id: 'university-of-mumbai',
@@ -270,8 +271,12 @@ export const education: TimelineEntry[] = [
     location: 'Mumbai, India',
     logoSrc: '/portfolio/logos/uom.jpg',
     monogram: 'UOM',
-    bullets: ['GPA: 9.21 / 10.'],
+    bullets: [
+      'GPA: 9.21 / 10.',
+      'Degree conferred by the University of Mumbai; coursework completed at Thadomal Shahani Engineering College, its affiliated college.',
+    ],
     techIds: [],
+    honors: ['Leadership Award', 'Student Ambassador'],
   },
   {
     id: 'research-fibroids',
