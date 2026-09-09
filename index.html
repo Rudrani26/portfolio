@@ -2,9 +2,54 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/RC_logo.png" />
+    <link rel="icon" type="image/png" href="/portfolio/RC_logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rudrani Chavarkar</title>
+
+    <title>Rudrani Chavarkar — AI &amp; Backend Systems Engineer</title>
+    <meta
+      name="description"
+      content="Portfolio of Rudrani Chavarkar, a USC computer science graduate student building reliable AI systems, backend infrastructure, security tools, and developer platforms."
+    />
+    <meta name="author" content="Rudrani Chavarkar" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Rudrani Chavarkar — AI & Backend Systems Engineer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Rudrani Chavarkar, a USC computer science graduate student building reliable AI systems, backend infrastructure, security tools, and developer platforms."
+    />
+    <meta property="og:image" content="/portfolio/RC_logo.png" />
+    <meta property="og:url" content="https://rudrani26.github.io/portfolio/" />
+
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Rudrani Chavarkar — AI & Backend Systems Engineer" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Rudrani Chavarkar, a USC computer science graduate student building reliable AI systems, backend infrastructure, security tools, and developer platforms."
+    />
+    <meta name="twitter:image" content="/portfolio/RC_logo.png" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+
+    <script>
+      // Applied before paint to avoid a flash of the wrong theme.
+      (function () {
+        try {
+          var stored = localStorage.getItem('rc-portfolio-theme');
+          var theme = stored === 'light' || stored === 'dark'
+            ? stored
+            : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+          document.documentElement.dataset.theme = theme;
+          document.documentElement.classList.toggle('dark', theme === 'dark');
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

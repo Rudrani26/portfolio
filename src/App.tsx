@@ -1,35 +1,55 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Skills from './components/Skills';
-import Projects from './components/Projects';
-import Experience from './components/Experience';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import Research from './components/Research';
+import { useCallback, useEffect, useState } from 'react';
+import { SkipLink } from './components/layout/SkipLink';
+import { Navbar } from './components/layout/Navbar';
+import { CommandPalette } from './components/layout/CommandPalette';
+import { Hero } from './components/sections/Hero';
+import { Projects } from './components/sections/Projects';
+import { Experience } from './components/sections/Experience';
+import { Toolbox } from './components/sections/Toolbox';
+import { About } from './components/sections/About';
+import { Contact } from './components/sections/Contact';
+import { Footer } from './components/sections/Footer';
+import { useTheme } from './hooks/useTheme';
 
-const App: React.FC = () => {
+function App() {
+  const { theme, toggleTheme } = useTheme();
+  const [paletteOpen, setPaletteOpen] = useState(false);
+
+  const openPalette = useCallback(() => setPaletteOpen(true), []);
+  const closePalette = useCallback(() => setPaletteOpen(false), []);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        setPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div className="relative min-h-screen">
-      {/* Background Noise/Texture Overlay - Fixed z-index to stay back */}
-      <div className="fixed inset-0 z-0 bg-noise opacity-[0.03] pointer-events-none" />
+      <div className="rc-noise pointer-events-none fixed inset-0 z-0 opacity-[0.025]" aria-hidden="true" />
 
-      <Navbar />
+      <SkipLink />
+      <Navbar theme={theme} onToggleTheme={toggleTheme} onOpenCommandPalette={openPalette} />
 
-      <main className="relative z-10 scroll-smooth">
+      <main id="main-content" className="relative z-10">
         <Hero />
-        <About />
-        <Skills />
         <Projects />
-        <Research />
         <Experience />
+        <Toolbox />
+        <About />
         <Contact />
       </main>
 
       <Footer />
+
+      <CommandPalette open={paletteOpen} onClose={closePalette} theme={theme} onToggleTheme={toggleTheme} />
     </div>
   );
-};
+}
 
 export default App;
