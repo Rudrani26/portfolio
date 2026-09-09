@@ -10,12 +10,18 @@ import { PortfolioTerminal } from '../interactions/PortfolioTerminal';
 export function Hero() {
   const reduced = useReducedMotion();
 
+  // md:items-center's vertical centering collapses toward zero once content
+  // height approaches min-h-[90svh], which on laptop-height viewports read
+  // as the badge sitting flush under the sticky navbar. pt-[clamp(...)] is a
+  // responsive floor that guarantees breathing room there, while staying
+  // small enough to leave the centered, spacious look on tall viewports
+  // essentially unchanged.
   return (
     <section
       id="hero"
       data-debug-outline
       data-debug-label="Hero"
-      className="relative overflow-hidden py-16 md:py-0 md:min-h-[90vh] md:flex md:items-center"
+      className="relative overflow-hidden pt-[clamp(2rem,1.2rem+3vw,4rem)] pb-16 md:pb-0 md:min-h-[90svh] md:flex md:items-center"
     >
       <div className="rc-grid-motif pointer-events-none absolute inset-0" aria-hidden="true" />
 
