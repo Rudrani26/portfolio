@@ -226,6 +226,12 @@
     color: var(--color-text-muted);
   }
 
+  .rc-tag:hover,
+  .rc-tag:focus-visible {
+    border-color: var(--color-accent-lime);
+    color: var(--color-accent-lime);
+  }
+
   .rc-skip-link {
     @apply fixed left-4 top-4 z-[200] -translate-y-24 rounded-md px-4 py-2 text-sm font-semibold transition-transform focus:translate-y-0;
     background-color: var(--color-accent-lime);

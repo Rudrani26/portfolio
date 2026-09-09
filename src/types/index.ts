@@ -30,10 +30,8 @@ export interface Project {
   description: string;
   /** Literal stats/results quoted from the résumé (e.g. "92% translation accuracy"). */
   highlights?: string[];
-  /** All technologies used, as displayed tags — may exceed the toolbox skill list. */
+  /** All technologies used, as displayed tags. */
   techTags: string[];
-  /** Subset of techTags that also exist in skillCategories, for the toolbox highlight feature. */
-  toolboxTechIds: string[];
   githubUrl: string | null;
   liveUrl: string | null;
 }

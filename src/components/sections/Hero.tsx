@@ -5,8 +5,7 @@ import { scrollToSection } from '../../lib/scroll';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { Container } from '../ui/Container';
 import { MagneticButton } from '../interactions/MagneticButton';
-import { TerminalIntro } from '../interactions/TerminalIntro';
-import { HeroNodeGraph } from '../interactions/HeroNodeGraph';
+import { PortfolioTerminal } from '../interactions/PortfolioTerminal';
 
 export function Hero() {
   const reduced = useReducedMotion();
@@ -36,44 +35,21 @@ export function Hero() {
           <p className="rc-body-lg mt-6 max-w-lg text-(--color-text-muted)">{heroContent.supporting}</p>
 
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <MagneticButton
-              as="button"
-              className="rc-btn-primary"
-              onClick={() => scrollToSection('projects')}
-            >
+            <MagneticButton as="button" className="rc-btn-primary" onClick={() => scrollToSection('projects')}>
               {heroContent.ctaPrimary}
               <ArrowDown size={16} aria-hidden="true" />
             </MagneticButton>
           </div>
-
-          <div className="mt-10 max-w-sm">
-            <TerminalIntro lines={heroContent.terminalLines} />
-          </div>
         </motion.div>
 
         <motion.div
-          initial={reduced ? undefined : { opacity: 0, scale: 0.95 }}
-          animate={reduced ? undefined : { opacity: 1, scale: 1 }}
+          initial={reduced ? undefined : { opacity: 0, y: 16 }}
+          animate={reduced ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
-          <HeroNodeGraph />
+          <PortfolioTerminal />
         </motion.div>
       </Container>
-
-      <button
-        type="button"
-        onClick={() => scrollToSection('projects')}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-1 text-(--color-text-muted) md:flex"
-        aria-label="Scroll to featured projects"
-      >
-        <span className="rc-eyebrow">scroll</span>
-        <motion.span
-          animate={reduced ? undefined : { y: [0, 6, 0] }}
-          transition={reduced ? undefined : { duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <ArrowDown size={16} aria-hidden="true" />
-        </motion.span>
-      </button>
     </section>
   );
 }

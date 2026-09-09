@@ -10,7 +10,7 @@ export function InternshipExperience() {
         <SectionHeading
           eyebrow="Internships"
           title="Where I’ve Been Building"
-          description="Software engineering internships — expand any entry for the details."
+          description="Software engineering internships, most recent first."
         />
         <TimelineList entries={internships} />
       </Container>

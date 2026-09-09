@@ -43,8 +43,20 @@ export const heroContent = {
   supporting:
     'MS Computer Science student at USC exploring agentic AI, backend engineering, developer infrastructure, and the systems that make ambitious software reliable.',
   ctaPrimary: 'Explore my work',
-  terminalLines: ['initializing rudrani.dev...', 'curiosity: online', 'building mode: active'],
 };
+
+// Content for the interactive hero terminal's `whoami` command — a concise,
+// résumé-grounded introduction (kept separate from aboutContent, which is
+// the longer About-section copy).
+export const terminalWhoami = [
+  'Rudrani Chavarkar',
+  'MS Computer Science student @ USC — expected May 2027',
+  'Focused on agentic AI, backend systems, and security tooling.',
+];
+
+// Curated, concise subset of skillCategories for the terminal's `show
+// skills` command — every id must exist in skillCategories below.
+export const terminalSkillIds = ['python', 'typescript', 'fastapi', 'react', 'aws', 'agentic-ai', 'llms'];
 
 export const aboutContent = {
   paragraph:
@@ -72,9 +84,7 @@ export const footerContent = {
 
 // ---------------------------------------------------------------------------
 // Skills — grouped for the Engineering Toolbox, taken from the résumé's
-// "TECHNICAL SKILLS" section. Each id is referenced by
-// project.toolboxTechIds so selecting a skill can highlight the projects
-// that use it.
+// "TECHNICAL SKILLS" section. Also referenced by terminalSkillIds below.
 // ---------------------------------------------------------------------------
 
 export const skillCategories: SkillCategory[] = [
@@ -156,7 +166,6 @@ export const projects: Project[] = [
       'Engineered a full-stack mobile app using React Native and FastAPI REST APIs, integrating Firebase Authentication and Realtime Database for secure user access, real-time data synchronization, and community chatrooms. Built backend inference workflows integrating LLaMA 3 70B via Groq, Wav2Vec2, and VITS for conversational AI, speech recognition, and text-to-speech.',
     highlights: ['92% translation accuracy', '94% speech-to-text accuracy', '90% text-to-speech accuracy'],
     techTags: ['React Native', 'FastAPI', 'Firebase Authentication', 'Firebase Realtime Database', 'LLaMA 3 70B (Groq)', 'Wav2Vec2', 'VITS'],
-    toolboxTechIds: ['react-native', 'fastapi'],
     githubUrl: 'https://github.com/Rudrani26/Maya_LanguageLearningApp',
     liveUrl: null,
   },
@@ -167,7 +176,6 @@ export const projects: Project[] = [
       'Built and deployed a Python/Streamlit application on AWS integrating VGG19-based facial emotion recognition, XGBoost mood prediction, and the Spotify API to generate personalized music recommendations.',
     highlights: ['94% facial emotion recognition accuracy'],
     techTags: ['Python', 'Streamlit', 'AWS', 'VGG19', 'XGBoost', 'Spotify API'],
-    toolboxTechIds: ['python', 'aws'],
     githubUrl: 'https://github.com/Rudrani26/Serenity-A-Mental-Well-Being-Web-Application',
     liveUrl: null,
   },
@@ -244,11 +252,24 @@ export const education: TimelineEntry[] = [
     dateRange: 'Aug 2025 – May 2027 (Expected)',
     sortKey: '2025-08',
     location: 'Los Angeles, California',
+    monogram: 'USC',
     bullets: [
       'GPA: 3.75 / 4.0.',
       'Relevant coursework: Analysis of Algorithms, Database Systems, Agentic AI, Applied Natural Language Processing.',
     ],
     techIds: ['agentic-ai', 'nlp', 'sql'],
+  },
+  {
+    id: 'university-of-mumbai',
+    type: 'education',
+    organization: 'University of Mumbai',
+    role: 'Bachelor of Engineering in Information Technology',
+    dateRange: 'Jul 2021 – May 2025',
+    sortKey: '2021-07',
+    location: 'Mumbai, India',
+    monogram: 'UOM',
+    bullets: ['GPA: 9.21 / 10.'],
+    techIds: [],
   },
   {
     id: 'research-fibroids',

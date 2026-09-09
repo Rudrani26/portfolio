@@ -4,6 +4,7 @@ import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
 import { Container } from '../ui/Container';
 import { SectionHeading } from '../ui/SectionHeading';
 import { GithubIcon, LinkedinIcon } from '../ui/BrandIcons';
+import { MagneticButton } from '../interactions/MagneticButton';
 
 const github = profile.social.find((s) => s.id === 'github')!;
 const linkedin = profile.social.find((s) => s.id === 'linkedin')!;
@@ -17,10 +18,10 @@ export function Contact() {
         <SectionHeading eyebrow="Contact" title={contactContent.closingStatement} />
 
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-          <a href={`mailto:${profile.email}`} className="rc-btn-primary">
+          <MagneticButton as="a" href={`mailto:${profile.email}`} className="rc-btn-primary">
             <Mail size={16} aria-hidden="true" />
             Email me
-          </a>
+          </MagneticButton>
 
           <button type="button" onClick={() => copy(profile.email)} className="rc-btn-secondary" aria-live="polite">
             {copied ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
