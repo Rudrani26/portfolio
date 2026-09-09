@@ -5,7 +5,7 @@ import { getSkillName } from '../../lib/skills';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { CompanyLogo } from './CompanyLogo';
 
-function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number }) {
+export function TimelineItem({ entry, index }: { entry: TimelineEntry; index: number }) {
   const reduced = useReducedMotion();
 
   return (

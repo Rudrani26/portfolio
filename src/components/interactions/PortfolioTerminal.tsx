@@ -5,6 +5,7 @@ import { getSkillName } from '../../lib/skills';
 import { scrollToSection } from '../../lib/scroll';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
 import { useCopyToClipboard } from '../../hooks/useCopyToClipboard';
+import { useTrojanMode } from '../../hooks/useTrojanMode';
 
 type TerminalAction = { kind: 'nav'; label: string; sectionId: string } | { kind: 'email' } | { kind: 'copy' };
 
@@ -74,6 +75,7 @@ function buildEntry(commandId: string, label: string, entryId: string): Terminal
 export function PortfolioTerminal() {
   const reduced = useReducedMotion();
   const { copied, copy } = useCopyToClipboard();
+  const { activate, terminalMessages, consumeTerminalMessages } = useTrojanMode();
   const [history, setHistory] = useState<TerminalEntry[]>([WELCOME_ENTRY]);
   const [inputValue, setInputValue] = useState('');
   const [revealCount, setRevealCount] = useState(reduced ? WELCOME_ENTRY.lines.length : 0);
@@ -81,6 +83,18 @@ export function PortfolioTerminal() {
   const entryCounter = useRef(0);
 
   const latest = history[history.length - 1];
+
+  // System messages pushed from elsewhere (the USC logo's click hint, and a
+  // brief success line when Trojan Mode is activated by a non-terminal
+  // trigger) land here and get appended like any other terminal output.
+  useEffect(() => {
+    if (terminalMessages.length === 0) return;
+    setHistory((prev) => [
+      ...prev,
+      ...terminalMessages.map((message) => ({ id: `sys-${message.id}`, lines: message.lines })),
+    ]);
+    consumeTerminalMessages();
+  }, [terminalMessages, consumeTerminalMessages]);
 
   useEffect(() => {
     if (reduced) {
@@ -130,6 +144,22 @@ export function PortfolioTerminal() {
     const raw = inputValue.trim().toLowerCase();
     if (!raw) return;
     setInputValue('');
+
+    // Hidden command — intentionally not in COMMANDS, so it never appears as
+    // a chip and never shows up in the "not a command" suggestion list.
+    if (raw === 'fighton') {
+      entryCounter.current += 1;
+      setHistory((prev) => [
+        ...prev,
+        {
+          id: `fighton-${entryCounter.current}`,
+          command: raw,
+          lines: ['[success] Trojan Mode activated', 'Cardinal: #990000', 'Gold: #FFCC00', 'Status: ✌️ Fight On!'],
+        },
+      ]);
+      activate({ skipTerminalMessage: true });
+      return;
+    }
 
     const match = COMMANDS.find((c) => c.aliases.includes(raw));
     if (match) {

@@ -285,3 +285,45 @@
   color: #0d0f0e;
   z-index: 60;
 }
+
+/* ---------------------------------------------------------------------
+   Trojan Mode (USC easter egg)
+--------------------------------------------------------------------- */
+@keyframes trojan-confetti-burst {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--tx), var(--ty)) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+.trojan-confetti-particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: trojan-confetti-burst 1.1s ease-out forwards;
+}
+
+@keyframes trojan-glow-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px #990000, 0 0 22px -4px #990000;
+  }
+  50% {
+    box-shadow: 0 0 0 1px #ffcc00, 0 0 26px -2px #ffcc00;
+  }
+}
+
+.trojan-active {
+  border-color: #990000 !important;
+  animation: trojan-glow-pulse 1.8s ease-in-out infinite;
+}
+
+.trojan-active-static {
+  border-color: #990000 !important;
+  box-shadow: 0 0 0 1px #990000, 0 0 0 4px color-mix(in srgb, #ffcc00 35%, transparent);
+}

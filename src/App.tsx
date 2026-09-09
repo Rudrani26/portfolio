@@ -11,6 +11,7 @@ import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
 import { Footer } from './components/sections/Footer';
 import { useTheme } from './hooks/useTheme';
+import { TrojanModeProvider } from './components/interactions/TrojanModeProvider';
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -31,26 +32,28 @@ function App() {
   }, []);
 
   return (
-    <div className="relative min-h-screen">
-      <div className="rc-noise pointer-events-none fixed inset-0 z-0 opacity-[0.025]" aria-hidden="true" />
+    <TrojanModeProvider>
+      <div className="relative min-h-screen">
+        <div className="rc-noise pointer-events-none fixed inset-0 z-0 opacity-[0.025]" aria-hidden="true" />
 
-      <SkipLink />
-      <Navbar theme={theme} onToggleTheme={toggleTheme} onOpenCommandPalette={openPalette} />
+        <SkipLink />
+        <Navbar theme={theme} onToggleTheme={toggleTheme} onOpenCommandPalette={openPalette} />
 
-      <main id="main-content" className="relative z-10">
-        <Hero />
-        <Projects />
-        <InternshipExperience />
-        <Education />
-        <Toolbox />
-        <About />
-        <Contact />
-      </main>
+        <main id="main-content" className="relative z-10">
+          <Hero />
+          <Projects />
+          <InternshipExperience />
+          <Education />
+          <Toolbox />
+          <About />
+          <Contact />
+        </main>
 
-      <Footer />
+        <Footer />
 
-      <CommandPalette open={paletteOpen} onClose={closePalette} theme={theme} onToggleTheme={toggleTheme} />
-    </div>
+        <CommandPalette open={paletteOpen} onClose={closePalette} theme={theme} onToggleTheme={toggleTheme} />
+      </div>
+    </TrojanModeProvider>
   );
 }
 

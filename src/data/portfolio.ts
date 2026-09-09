@@ -252,6 +252,7 @@ export const education: TimelineEntry[] = [
     dateRange: 'Aug 2025 – May 2027 (Expected)',
     sortKey: '2025-08',
     location: 'Los Angeles, California',
+    logoSrc: '/portfolio/logos/usc.jpg',
     monogram: 'USC',
     bullets: [
       'GPA: 3.75 / 4.0.',
@@ -267,6 +268,7 @@ export const education: TimelineEntry[] = [
     dateRange: 'Jul 2021 – May 2025',
     sortKey: '2021-07',
     location: 'Mumbai, India',
+    logoSrc: '/portfolio/logos/uom.jpg',
     monogram: 'UOM',
     bullets: ['GPA: 9.21 / 10.'],
     techIds: [],
